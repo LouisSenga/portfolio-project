@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import type { CSSProperties } from "react";
 
 const links = [
   { label: "Accueil", href: "#hero" },
@@ -13,15 +14,62 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+const activeLinkStyle: CSSProperties = {
+  color: "#fff",
+  background: "rgba(139,92,246,0.18)",
+  boxShadow: "inset 0 0 0 1px rgba(139,92,246,0.26)",
+};
+
+const inactiveLinkStyle: CSSProperties = {
+  color: "#94a3b8",
+  background: "transparent",
+  boxShadow: "inset 0 0 0 1px transparent",
+};
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState(links[0].href);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
+    fn();
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  useEffect(() => {
+    const sections = links
+      .map((link) => link.href.slice(1))
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    const updateActiveSection = () => {
+      const marker = window.scrollY + window.innerHeight * 0.35;
+      const currentSection =
+        sections.findLast((section) => section.offsetTop <= marker) ??
+        sections[0];
+
+      if (currentSection) {
+        setActiveHref(`#${currentSection.id}`);
+      }
+    };
+
+    const frame = window.requestAnimationFrame(updateActiveSection);
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
+
+  const handleLinkClick = (href: string) => {
+    setActiveHref(href);
+    setOpen(false);
+  };
 
   return (
     <>
@@ -73,23 +121,31 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
+                aria-current={activeHref === l.href ? "page" : undefined}
+                onClick={() => handleLinkClick(l.href)}
                 style={{
                   padding: "8px 16px",
                   fontSize: "0.875rem",
-                  color: "#94a3b8",
                   borderRadius: "8px",
                   textDecoration: "none",
                   fontWeight: 500,
                   transition: "all 0.2s",
+                  ...(activeHref === l.href ? activeLinkStyle : inactiveLinkStyle),
                 }}
                 onMouseEnter={(e) => {
-                  (e.target as HTMLElement).style.color = "#fff";
-                  (e.target as HTMLElement).style.background =
-                    "rgba(255,255,255,0.05)";
+                  e.currentTarget.style.color = "#fff";
+                  e.currentTarget.style.background =
+                    activeHref === l.href
+                      ? activeLinkStyle.background?.toString() ?? ""
+                      : "rgba(255,255,255,0.05)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.target as HTMLElement).style.color = "#94a3b8";
-                  (e.target as HTMLElement).style.background = "transparent";
+                  e.currentTarget.style.color =
+                    activeHref === l.href ? "#fff" : "#94a3b8";
+                  e.currentTarget.style.background =
+                    activeHref === l.href
+                      ? activeLinkStyle.background?.toString() ?? ""
+                      : "transparent";
                 }}>
                 {l.label}
               </a>
@@ -99,6 +155,7 @@ export default function Navbar() {
           <a
             href="#contact"
             className="hidden md:flex"
+            onClick={() => handleLinkClick("#contact")}
             style={{
               alignItems: "center",
               gap: "8px",
@@ -167,7 +224,8 @@ export default function Navbar() {
               <motion.a
                 key={l.href}
                 href={l.href}
-                onClick={() => setOpen(false)}
+                onClick={() => handleLinkClick(l.href)}
+                aria-current={activeHref === l.href ? "page" : undefined}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06 }}
@@ -175,8 +233,12 @@ export default function Navbar() {
                   fontSize: "1.5rem",
                   fontFamily: "var(--font-syne,'Syne',sans-serif)",
                   fontWeight: 700,
-                  color: "#cbd5e1",
+                  color: activeHref === l.href ? "#fff" : "#cbd5e1",
                   textDecoration: "none",
+                  borderBottom:
+                    activeHref === l.href
+                      ? "2px solid rgba(6,182,212,0.8)"
+                      : "2px solid transparent",
                 }}>
                 {l.label}
               </motion.a>

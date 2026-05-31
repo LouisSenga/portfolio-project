@@ -56,8 +56,18 @@ function ProjectCard({
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}>
-      <Card style={{ padding: "24px", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      style={{ display: "flex", height: "100%" }}>
+      <Card
+        style={{
+          padding: "24px",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          overflow: "hidden",
+          width: "100%",
+          height: "100%",
+        }}>
         <div
           style={{
             position: "absolute",
@@ -122,7 +132,15 @@ export default function Projects() {
         inView={inView}
       />
 
-      <div className="projects-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "24px" }}>
+      <div
+        className="projects-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3,1fr)",
+          gridAutoRows: "1fr",
+          alignItems: "stretch",
+          gap: "24px",
+        }}>
         {projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} inView={inView} />
         ))}
