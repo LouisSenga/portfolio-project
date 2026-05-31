@@ -1,0 +1,67 @@
+export const experiences = [
+  {
+    title: "Développeur Full Stack",
+    company: "AKATA GOAVANA",
+    location: "Fianarantsoa",
+    period: "Juin 2025 – Présent",
+    current: true,
+    tasks: [
+      "Développement backend avec NestJS, Express.js et Laravel sur plusieurs projets simultanés.",
+      "Développement frontend avec React et Next.js.",
+      "Développement mobile React Native : Rankocracy App (publiée sur Play Store) et Koékip App (publiée sur Play Store).",
+      "Développement de Kasamai Talents : plateforme SaaS d'optimisation de profil professionnel par IA (NLP, analyse de CV, recommandations personnalisées).",
+      "Intégration d'APIs IA : OpenAI et Gemini. Intégration Stripe pour les paiements.",
+      "Services Google : OAuth2, Calendar API, Gmail API via Google Cloud Console.",
+      "Conteneurisation Docker, Redis pour le traitement IA, gestion de versions GitLab/Git.",
+    ],
+  },
+  {
+    title: "Développeur Backend",
+    company: "MOSYC – Unité de recherche de l'EMIT",
+    location: "Fianarantsoa",
+    period: "Septembre 2024 – Novembre 2024",
+    current: false,
+    tasks: [
+      "Développement des API pour la gestion des thèses, projets de recherche, membres et publications.",
+      "Modélisation des données et relations avec Eloquent ORM (Laravel).",
+      "Contrôles d'accès par rôles et permissions.",
+      "Optimisation des performances de 30% par refactorisation du code existant.",
+    ],
+  },
+  {
+    title: "Développeur Backend – Hackathon Aquisio",
+    company: "Accès Banque / EMIT",
+    location: "2e Place",
+    period: "24 – 27 Mars 2024",
+    current: false,
+    tasks: [
+      "APIs backend NestJS pour Aquisio, plateforme de gestion des achats en entreprise.",
+      "Emails transactionnels et notifications temps réel via WebSockets.",
+      "Authentification JWT et gestion des rôles.",
+    ],
+  },
+  {
+    title: "Développeur Web",
+    company: "Le Port Hôtel",
+    location: "",
+    period: "Février 2024 – Avril 2024",
+    current: false,
+    tasks: [
+      "Site vitrine et espace administratif complet (Laravel, Vite.js, MySQL).",
+      "Module de réservations en ligne et gestion des chambres.",
+      "Tests unitaires couvrant 85% du codebase.",
+    ],
+  },
+  {
+    title: "Développeur Web",
+    company: "IRA Hôtel",
+    location: "",
+    period: "Octobre 2023 – Décembre 2023",
+    current: false,
+    tasks: [
+      "Site public et tableau de bord admin (Laravel, Vite.js).",
+      "Migration et normalisation de la base de données.",
+      "Sécurisation CSRF, sanitization et refactoring API REST.",
+    ],
+  },
+];
