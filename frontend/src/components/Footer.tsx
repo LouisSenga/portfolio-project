@@ -1,6 +1,7 @@
 "use client";
 import { personalInfo } from "@/data/portfolio";
 import { Mail } from "lucide-react";
+import Image from "next/image";
 
 const GithubIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -25,15 +26,7 @@ export default function Footer() {
           gap: "16px",
         }}>
         <div>
-          <span
-            style={{
-              fontFamily: "var(--font-syne,'Syne',sans-serif)",
-              fontWeight: 800,
-              color: "#fff",
-              fontSize: "1.1rem",
-            }}>
-            FS<span style={{ color: "#8b5cf6" }}>.</span>
-          </span>
+          <Image src="/icon.png" alt="Logo" width={45} height={40} priority />
           <p
             style={{ fontSize: "0.75rem", color: "#334155", marginTop: "4px" }}>
             Fenoanjara SENGA — Développeur Full Stack

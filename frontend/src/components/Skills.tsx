@@ -23,11 +23,30 @@ function SkillCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.08 }}>
-      <Card style={{ padding: "24px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      style={{ height: "100%" }}>
+      <Card
+        style={{
+          padding: "24px",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            marginBottom: "20px",
+          }}>
           <span style={{ fontSize: "1.5rem" }}>{group.icon}</span>
-          <h3 style={{ ...fontHeading, fontWeight: 700, color: "#fff", fontSize: "0.95rem" }}>
+          <h3
+            style={{
+              ...fontHeading,
+              fontWeight: 700,
+              color: "#fff",
+              fontSize: "0.95rem",
+            }}>
             {group.category}
           </h3>
         </div>
@@ -57,7 +76,13 @@ function LanguageMeter({
 }) {
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "8px",
+        }}>
         <span style={{ color: "#fff", fontWeight: 600, fontSize: "0.875rem" }}>
           {language.lang}
         </span>
@@ -65,7 +90,13 @@ function LanguageMeter({
           {language.level}
         </span>
       </div>
-      <div style={{ height: "6px", background: "rgba(255,255,255,0.05)", borderRadius: "999px", overflow: "hidden" }}>
+      <div
+        style={{
+          height: "6px",
+          background: "rgba(255,255,255,0.05)",
+          borderRadius: "999px",
+          overflow: "hidden",
+        }}>
         <motion.div
           initial={{ width: 0 }}
           animate={inView ? { width: `${language.pct}%` } : {}}
@@ -88,12 +119,29 @@ function LanguagesCard({ inView }: { inView: boolean }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: 0.6 }}>
       <Card style={{ padding: "24px", marginTop: "24px" }}>
-        <h3 style={{ ...fontHeading, fontWeight: 700, color: "#fff", marginBottom: "20px", fontSize: "0.95rem" }}>
+        <h3
+          style={{
+            ...fontHeading,
+            fontWeight: 700,
+            color: "#fff",
+            marginBottom: "20px",
+            fontSize: "0.95rem",
+          }}>
           🌍 Langues
         </h3>
-        <div className="lang-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "24px" }}>
+        <div
+          className="lang-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3,1fr)",
+            gap: "24px",
+          }}>
           {languages.map((language) => (
-            <LanguageMeter key={language.lang} language={language} inView={inView} />
+            <LanguageMeter
+              key={language.lang}
+              language={language}
+              inView={inView}
+            />
           ))}
         </div>
       </Card>
@@ -110,7 +158,8 @@ export default function Skills() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to bottom,transparent,rgba(30,58,138,0.04),transparent)",
+          background:
+            "linear-gradient(to bottom,transparent,rgba(30,58,138,0.04),transparent)",
           pointerEvents: "none",
         }}
       />
@@ -124,9 +173,20 @@ export default function Skills() {
         inView={inView}
       />
 
-      <div className="skills-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "20px" }}>
+      <div
+        className="skills-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3,1fr)",
+          gap: "20px",
+        }}>
         {skills.map((group, index) => (
-          <SkillCard key={group.category} group={group} index={index} inView={inView} />
+          <SkillCard
+            key={group.category}
+            group={group}
+            index={index}
+            inView={inView}
+          />
         ))}
       </div>
       <LanguagesCard inView={inView} />

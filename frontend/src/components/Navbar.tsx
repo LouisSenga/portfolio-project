@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import type { CSSProperties } from "react";
 
 const links = [
@@ -102,15 +103,14 @@ export default function Navbar() {
             href="#hero"
             whileHover={{ scale: 1.05 }}
             style={{ textDecoration: "none" }}>
-            <span
-              className="gradient-text"
-              style={{
-                fontFamily: "var(--font-syne,'Syne',sans-serif)",
-                fontWeight: 800,
-                fontSize: "1.2rem",
-              }}>
-              FS<span style={{ color: "#8b5cf6" }}>.</span>
-            </span>
+            <Image
+              src="/icon.png"
+              alt="Logo"
+              width={45}
+              height={40}
+              priority
+              style={{ cursor: "pointer" }}
+            />
           </motion.a>
 
           {/* Desktop */}
@@ -130,13 +130,15 @@ export default function Navbar() {
                   textDecoration: "none",
                   fontWeight: 500,
                   transition: "all 0.2s",
-                  ...(activeHref === l.href ? activeLinkStyle : inactiveLinkStyle),
+                  ...(activeHref === l.href
+                    ? activeLinkStyle
+                    : inactiveLinkStyle),
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "#fff";
                   e.currentTarget.style.background =
                     activeHref === l.href
-                      ? activeLinkStyle.background?.toString() ?? ""
+                      ? (activeLinkStyle.background?.toString() ?? "")
                       : "rgba(255,255,255,0.05)";
                 }}
                 onMouseLeave={(e) => {
@@ -144,7 +146,7 @@ export default function Navbar() {
                     activeHref === l.href ? "#fff" : "#94a3b8";
                   e.currentTarget.style.background =
                     activeHref === l.href
-                      ? activeLinkStyle.background?.toString() ?? ""
+                      ? (activeLinkStyle.background?.toString() ?? "")
                       : "transparent";
                 }}>
                 {l.label}
