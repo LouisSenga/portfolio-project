@@ -3,8 +3,8 @@ export const experiences = [
     title: "Développeur Full Stack",
     company: "AKATA GOAVANA",
     location: "Fianarantsoa",
-    period: "Juin 2025 – Présent",
-    current: true,
+    period: "Juin 2025 – Mai 2026",
+    current: false,
     tasks: [
       "Développement backend avec NestJS, Express.js et Laravel sur plusieurs projets simultanés.",
       "Développement frontend avec React et Next.js.",

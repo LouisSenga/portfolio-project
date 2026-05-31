@@ -15,7 +15,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Fenoanjara SENGA — Développeur Full Stack",
+  title: "Fenoanjara SENGA - Développeur Full Stack",
   description:
     "Portfolio de Fenoanjara SENGA, Développeur Full Stack spécialisé NestJS, Laravel, React Native. Fianarantsoa, Madagascar.",
   keywords: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Fenoanjara SENGA" }],
   openGraph: {
-    title: "Fenoanjara SENGA — Développeur Full Stack",
+    title: "Fenoanjara SENGA - Développeur Full Stack",
     description: "APIs robustes, applications mobiles, intégration IA.",
     type: "website",
   },
