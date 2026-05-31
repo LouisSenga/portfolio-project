@@ -192,7 +192,7 @@ export default function Blog() {
                   color: "#475569",
                   fontWeight: 500,
                 }}>
-                <PenLine size={12} /> Lire l'article <ArrowRight size={12} />
+                <PenLine size={12} /> Lire l&apos;article <ArrowRight size={12} />
               </div>
             </motion.div>
           ))}

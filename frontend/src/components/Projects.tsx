@@ -10,6 +10,14 @@ const GithubIcon = () => (
   </svg>
 );
 
+const colorMap: Record<string, { from: string; to: string }> = {
+  "violet-cyan": { from: "#8b5cf6", to: "#06b6d4" },
+  "blue-violet": { from: "#3b82f6", to: "#8b5cf6" },
+  "cyan-blue": { from: "#06b6d4", to: "#3b82f6" },
+  "emerald-cyan": { from: "#10b981", to: "#06b6d4" },
+  "orange-pink": { from: "#f97316", to: "#ec4899" },
+};
+
 export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -31,6 +39,7 @@ export default function Projects() {
           pointerEvents: "none",
         }}
       />
+
       <div ref={ref} className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,7 +47,7 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           style={{ marginBottom: "4rem" }}>
           <span className="section-label" style={{ marginBottom: "12px" }}>
-            Ce que j'ai construit
+            Ce que j&apos;ai construit
           </span>
           <h2
             style={{
@@ -59,150 +68,191 @@ export default function Projects() {
             gap: "24px",
           }}
           className="projects-grid">
-          {projects.map((p, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="card"
-              style={{
-                padding: "24px",
-                display: "flex",
-                flexDirection: "column",
-                position: "relative",
-                overflow: "hidden",
-              }}>
-              {/* Top color line */}
-              <div
+          {projects.map((p, i) => {
+            const c = colorMap[p.color] ?? { from: "#8b5cf6", to: "#06b6d4" };
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="card"
                 style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: "2px",
-                  background: `linear-gradient(to right, ${p.color.includes("violet") ? "#8b5cf6" : p.color.includes("blue") ? "#3b82f6" : p.color.includes("cyan") ? "#06b6d4" : p.color.includes("emerald") ? "#10b981" : "#f97316"}, ${p.color.includes("cyan") ? "#06b6d4" : "#8b5cf6"})`,
-                  opacity: 0.7,
-                }}
-              />
-              <div
-                style={{
+                  padding: "24px",
                   display: "flex",
-                  alignItems: "flex-start",
-                  justifyContent: "space-between",
-                  marginBottom: "16px",
+                  flexDirection: "column",
+                  position: "relative",
+                  overflow: "hidden",
                 }}>
-                <span
+                {/* Top color line */}
+                <div
                   style={{
-                    fontSize: "0.7rem",
-                    padding: "4px 10px",
-                    borderRadius: "999px",
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    color: "#94a3b8",
-                    fontWeight: 500,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: "2px",
+                    background: `linear-gradient(to right, ${c.from}, ${c.to})`,
+                    opacity: 0.8,
+                  }}
+                />
+
+                {/* Badge + actions */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    marginBottom: "16px",
                   }}>
-                  {p.badge}
-                </span>
-                <div style={{ display: "flex", gap: "8px" }}>
-                  {p.github && (
-                    <a
-                      href={p.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        width: "32px",
-                        height: "32px",
-                        borderRadius: "8px",
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#64748b",
-                        textDecoration: "none",
-                        transition: "all 0.2s",
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.color = "#fff")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.color = "#64748b")
-                      }>
-                      <GithubIcon />
-                    </a>
-                  )}
-                  {p.link && (
-                    <a
-                      href={p.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        width: "32px",
-                        height: "32px",
-                        borderRadius: "8px",
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#64748b",
-                        textDecoration: "none",
-                        transition: "all 0.2s",
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.color = "#22d3ee")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.color = "#64748b")
-                      }>
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
-                </div>
-              </div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-syne,'Syne',sans-serif)",
-                  fontWeight: 700,
-                  color: "#fff",
-                  fontSize: "1.1rem",
-                  marginBottom: "12px",
-                }}>
-                {p.title}
-              </h3>
-              <p
-                style={{
-                  color: "#94a3b8",
-                  fontSize: "0.875rem",
-                  lineHeight: 1.7,
-                  flex: 1,
-                  marginBottom: "20px",
-                }}>
-                {p.description}
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                {p.tags.map((tag) => (
                   <span
-                    key={tag}
                     style={{
                       fontSize: "0.7rem",
                       padding: "4px 10px",
-                      borderRadius: "6px",
-                      background: "rgba(139,92,246,0.1)",
-                      border: "1px solid rgba(139,92,246,0.2)",
-                      color: "#c4b5fd",
+                      borderRadius: "999px",
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      color: "#94a3b8",
                       fontWeight: 500,
                     }}>
-                    {tag}
+                    {p.badge}
                   </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                  <div style={{ display: "flex", gap: "6px" }}>
+                    {p.github && (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "8px",
+                          background: "rgba(255,255,255,0.04)",
+                          border: "1px solid rgba(255,255,255,0.08)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#64748b",
+                          textDecoration: "none",
+                          transition: "all 0.2s",
+                        }}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.color = "#fff")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.color = "#64748b")
+                        }>
+                        <GithubIcon />
+                      </a>
+                    )}
+                    {p.playstore && (
+                      <a
+                        href={p.playstore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "8px",
+                          background: "rgba(6,182,212,0.06)",
+                          border: "1px solid rgba(6,182,212,0.2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#22d3ee",
+                          textDecoration: "none",
+                          transition: "all 0.2s",
+                          fontSize: "0.75rem",
+                        }}
+                        title="Voir sur Play Store"
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.borderColor =
+                            "rgba(6,182,212,0.5)")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.borderColor =
+                            "rgba(6,182,212,0.2)")
+                        }>
+                        ▶
+                      </a>
+                    )}
+                    {p.link && !p.playstore && (
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "8px",
+                          background: "rgba(255,255,255,0.04)",
+                          border: "1px solid rgba(255,255,255,0.08)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#64748b",
+                          textDecoration: "none",
+                          transition: "all 0.2s",
+                        }}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.color = "#22d3ee")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.color = "#64748b")
+                        }>
+                        <ExternalLink size={13} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <h3
+                  style={{
+                    fontFamily: "var(--font-syne,'Syne',sans-serif)",
+                    fontWeight: 700,
+                    color: "#fff",
+                    fontSize: "1.05rem",
+                    marginBottom: "10px",
+                  }}>
+                  {p.title}
+                </h3>
+                <p
+                  style={{
+                    color: "#94a3b8",
+                    fontSize: "0.855rem",
+                    lineHeight: 1.7,
+                    flex: 1,
+                    marginBottom: "18px",
+                  }}>
+                  {p.description}
+                </p>
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                  {p.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontSize: "0.7rem",
+                        padding: "4px 10px",
+                        borderRadius: "6px",
+                        background: "rgba(139,92,246,0.1)",
+                        border: "1px solid rgba(139,92,246,0.2)",
+                        color: "#c4b5fd",
+                        fontWeight: 500,
+                      }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-      <style>{`@media(max-width:1024px){.projects-grid{grid-template-columns:repeat(2,1fr)!important;}}@media(max-width:640px){.projects-grid{grid-template-columns:1fr!important;}}`}</style>
+      <style>{`
+        @media(max-width:1024px){.projects-grid{grid-template-columns:repeat(2,1fr)!important;}}
+        @media(max-width:640px){.projects-grid{grid-template-columns:1fr!important;}}
+      `}</style>
     </section>
   );
 }

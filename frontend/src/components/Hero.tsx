@@ -25,7 +25,7 @@ function TypeWriter() {
 
   useEffect(() => {
     const current = roles[index];
-    let t: NodeJS.Timeout;
+    let t: ReturnType<typeof setTimeout>;
     if (!deleting && displayed.length < current.length)
       t = setTimeout(
         () => setDisplayed(current.slice(0, displayed.length + 1)),
@@ -35,10 +35,12 @@ function TypeWriter() {
       t = setTimeout(() => setDeleting(true), 1800);
     else if (deleting && displayed.length > 0)
       t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35);
-    else {
-      setDeleting(false);
-      setIndex((i) => (i + 1) % roles.length);
-    }
+    else
+      t = setTimeout(() => {
+        setDeleting(false);
+        setIndex((i) => (i + 1) % roles.length);
+      }, 0);
+
     return () => clearTimeout(t);
   }, [displayed, deleting, index]);
 
@@ -368,6 +370,7 @@ export default function Hero() {
               }}>
               <Avatar />
             </div>
+            {/* Badge bas gauche */}
             <motion.div
               animate={{ y: [-5, 5, -5] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -385,6 +388,8 @@ export default function Hero() {
               }}>
               ⚡ NestJS
             </motion.div>
+
+            {/* Badge haut droite */}
             <motion.div
               animate={{ y: [5, -5, 5] }}
               transition={{
@@ -406,13 +411,15 @@ export default function Hero() {
               }}>
               📱 React Native
             </motion.div>
+
+            {/* Badge milieu droite */}
             <motion.div
               animate={{ y: [-3, 3, -3] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 position: "absolute",
-                top: "50%",
-                right: "-32px",
+                top: "45%",
+                right: "-40px",
                 background: "#0d1220",
                 border: "1px solid rgba(59,130,246,0.3)",
                 borderRadius: "10px",
@@ -422,6 +429,75 @@ export default function Hero() {
                 color: "#93c5fd",
               }}>
               🤖 IA
+            </motion.div>
+
+            {/* Badge haut gauche */}
+            <motion.div
+              animate={{ y: [4, -4, 4] }}
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                position: "absolute",
+                top: "-8px",
+                left: "-16px",
+                background: "#0d1220",
+                border: "1px solid rgba(16,185,129,0.3)",
+                borderRadius: "10px",
+                padding: "8px 12px",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                color: "#6ee7b7",
+              }}>
+              🚀 2 Apps publiées
+            </motion.div>
+
+            {/* Badge bas droite */}
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{
+                duration: 2.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                position: "absolute",
+                bottom: "-8px",
+                right: "-16px",
+                background: "#0d1220",
+                border: "1px solid rgba(245,158,11,0.3)",
+                borderRadius: "10px",
+                padding: "8px 12px",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                color: "#fcd34d",
+              }}>
+              💳 Stripe & SaaS
+            </motion.div>
+
+            {/* Badge milieu gauche — Next.js */}
+            <motion.div
+              animate={{ y: [3, -3, 3] }}
+              transition={{
+                duration: 3.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                position: "absolute",
+                top: "45%",
+                left: "-40px",
+                background: "#0d1220",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: "10px",
+                padding: "8px 12px",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                color: "#e2e8f0",
+              }}>
+              ▲ Next.js
             </motion.div>
           </div>
         </motion.div>

@@ -7,7 +7,7 @@ export const personalInfo = {
   phone: "+261 34 85 96 777",
   location: "Fianarantsoa, Madagascar",
   github: "https://github.com/LouisSenga",
-  linkedin: "", // ajoute ton lien LinkedIn si tu en as un
+  linkedin: "",
   playstore: "https://play.google.com/store/apps/details?id=com.koekip.app",
   about: `Développeur Full Stack passionné, diplômé d'un Master II en Science des Données et
 Intelligence Artificielle. Spécialisé en développement backend avec NestJS et Laravel,
@@ -26,10 +26,11 @@ export const experiences = [
     tasks: [
       "Développement backend avec NestJS, Express.js et Laravel sur plusieurs projets simultanés.",
       "Développement frontend avec React et Next.js.",
-      "Développement mobile React Native : Polici App et Koékip App (déployée sur Google Play Store).",
-      "Intégration d'APIs IA : OpenAI et Gemini.",
+      "Développement mobile React Native : Rankocracy App (publiée sur Play Store) et Koékip App (publiée sur Play Store).",
+      "Développement de Kasamai Talents : plateforme SaaS d'optimisation de profil professionnel par IA (NLP, analyse de CV, recommandations personnalisées).",
+      "Intégration d'APIs IA : OpenAI et Gemini. Intégration Stripe pour les paiements.",
       "Services Google : OAuth2, Calendar API, Gmail API via Google Cloud Console.",
-      "Conteneurisation Docker, gestion de versions GitLab/Git.",
+      "Conteneurisation Docker, Redis pour le traitement IA, gestion de versions GitLab/Git.",
     ],
   },
   {
@@ -85,26 +86,49 @@ export const experiences = [
 
 export const projects = [
   {
+    title: "Kasamai Talents",
+    description:
+      "Plateforme SaaS d'optimisation de profil professionnel par IA. Analyse automatique de CV (NLP), extraction de compétences, recommandations personnalisées et préparation aux entretiens. Module gratuit d'analyse + modules payants (achat unique via Stripe).",
+    tags: [
+      "NestJS",
+      "Next.js",
+      "PostgreSQL",
+      "Redis",
+      "OpenAI",
+      "Stripe",
+      "SaaS",
+    ],
+    link: "",
+    github: "",
+    highlight: true,
+    badge: "🤖 IA & SaaS",
+    color: "violet-cyan",
+    playstore: "",
+  },
+  {
+    title: "Rankocracy App",
+    description:
+      "Plateforme citoyenne mobile : votez pour ou contre des personnalités politiques mondiales, suivez les classements en temps réel, débattez dans les commentaires. Actualités mondiales intégrées. Publiée sur le Google Play Store.",
+    tags: ["React Native", "NestJS", "WebSockets", "API REST", "Google Play"],
+    link: "https://play.google.com/store/apps/details?id=com.rankocracy.app",
+    github: "",
+    highlight: true,
+    badge: "🗳️ Live sur Play Store",
+    color: "blue-violet",
+    playstore:
+      "https://play.google.com/store/apps/details?id=com.rankocracy.app",
+  },
+  {
     title: "Koékip App",
     description:
-      "Application mobile qui connecte les sportifs entre eux. Trouve un binôme, rejoins une équipe, participe à des sessions spontanées. Espace handisport dédié. Déployée sur le Google Play Store.",
+      "Application mobile qui connecte les sportifs entre eux. Trouve un binôme, rejoins une équipe, participe à des sessions spontanées. Espace handisport dédié. Publiée sur le Google Play Store.",
     tags: ["React Native", "NestJS", "Google Play", "WebSockets", "Mobile"],
     link: "https://play.google.com/store/apps/details?id=com.koekip.app",
     github: "",
     highlight: true,
     badge: "🏆 Live sur Play Store",
-    color: "from-violet-500 to-cyan-500",
-  },
-  {
-    title: "Polici App",
-    description:
-      "Réseau social politique : connexion des politiciens, actualités internationales en temps réel, système de votes et classement par rang. Application mobile React Native.",
-    tags: ["React Native", "NestJS", "WebSockets", "API REST", "Mobile"],
-    link: "",
-    github: "",
-    highlight: true,
-    badge: "📱 Application Mobile",
-    color: "from-blue-500 to-violet-500",
+    color: "violet-cyan",
+    playstore: "https://play.google.com/store/apps/details?id=com.koekip.app",
   },
   {
     title: "Aquisio – Hackathon",
@@ -115,7 +139,8 @@ export const projects = [
     github: "",
     highlight: false,
     badge: "🥈 2e Place Hackathon",
-    color: "from-cyan-500 to-blue-500",
+    color: "cyan-blue",
+    playstore: "",
   },
   {
     title: "Le Port Hôtel",
@@ -126,7 +151,8 @@ export const projects = [
     github: "",
     highlight: false,
     badge: "🏨 Site Web",
-    color: "from-emerald-500 to-cyan-500",
+    color: "emerald-cyan",
+    playstore: "",
   },
   {
     title: "IRA Hôtel",
@@ -137,7 +163,8 @@ export const projects = [
     github: "",
     highlight: false,
     badge: "🏨 Site Web",
-    color: "from-orange-500 to-pink-500",
+    color: "orange-pink",
+    playstore: "",
   },
 ];
 
@@ -165,6 +192,7 @@ export const skills = [
     items: [
       "MySQL",
       "PostgreSQL",
+      "Redis",
       "Eloquent ORM",
       "Modélisation MERISE",
       "UML",
@@ -179,12 +207,13 @@ export const skills = [
       "Google OAuth2",
       "Gmail API",
       "Google Calendar API",
+      "NLP",
     ],
   },
   {
     category: "DevOps & Outils",
     icon: "🛠️",
-    items: ["Docker", "Git", "GitLab", "GitHub", "Google Play Store"],
+    items: ["Docker", "Git", "GitLab", "GitHub", "Stripe", "Google Play Store"],
   },
   {
     category: "Langages",

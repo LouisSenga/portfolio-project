@@ -24,6 +24,29 @@ const inputStyle: React.CSSProperties = {
   boxSizing: "border-box",
 };
 
+const apps = [
+  {
+    emoji: "🏆",
+    name: "Koékip",
+    desc: "App sportive — Google Play Store",
+    href: "https://play.google.com/store/apps/details?id=com.koekip.app",
+    color: "rgba(6,182,212,0.05)",
+    border: "rgba(6,182,212,0.2)",
+    textColor: "#22d3ee",
+    labelColor: "rgba(6,182,212,0.6)",
+  },
+  {
+    emoji: "🗳️",
+    name: "Rankocracy",
+    desc: "App citoyenne — Google Play Store",
+    href: "https://play.google.com/store/apps/details?id=com.rankocracy.app",
+    color: "rgba(139,92,246,0.05)",
+    border: "rgba(139,92,246,0.2)",
+    textColor: "#c4b5fd",
+    labelColor: "rgba(139,92,246,0.6)",
+  },
+];
+
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -83,6 +106,7 @@ export default function Contact() {
       id="contact"
       style={{ position: "relative", padding: "7rem 0", overflow: "hidden" }}>
       <div ref={ref} className="section-container">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -104,7 +128,7 @@ export default function Contact() {
           </h2>
           <p style={{ color: "#94a3b8", maxWidth: "28rem", margin: "0 auto" }}>
             Disponible pour des missions freelance, des collaborations ou
-            simplement pour discuter d'un projet.
+            simplement pour discuter d&apos;un projet.
           </p>
         </motion.div>
 
@@ -115,7 +139,7 @@ export default function Contact() {
             gap: "48px",
           }}
           className="contact-grid">
-          {/* Left */}
+          {/* Left — infos */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -174,45 +198,71 @@ export default function Contact() {
                 <ExternalLink size={12} style={{ color: "#334155" }} />
               </motion.a>
             ))}
-            <motion.a
-              href={personalInfo.playstore}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6 }}
+
+            {/* 2 Apps live */}
+            <div
               style={{
+                marginTop: "4px",
                 display: "flex",
-                alignItems: "center",
-                gap: "16px",
-                padding: "16px",
-                borderRadius: "16px",
-                background: "rgba(6,182,212,0.05)",
-                border: "1px solid rgba(6,182,212,0.2)",
-                textDecoration: "none",
-                transition: "all 0.2s",
+                flexDirection: "column",
+                gap: "8px",
               }}>
-              <span style={{ fontSize: "1.5rem" }}>📱</span>
-              <div style={{ flex: 1 }}>
-                <p
+              <p
+                style={{
+                  fontSize: "0.7rem",
+                  color: "#475569",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                  marginBottom: "4px",
+                }}>
+                📱 Applications live sur Play Store
+              </p>
+              {apps.map((app, i) => (
+                <motion.a
+                  key={app.name}
+                  href={app.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.55 + i * 0.1 }}
                   style={{
-                    fontSize: "0.7rem",
-                    color: "rgba(6,182,212,0.6)",
-                    marginBottom: "2px",
-                  }}>
-                  Application live
-                </p>
-                <p
-                  style={{
-                    color: "#22d3ee",
-                    fontWeight: 600,
-                    fontSize: "0.875rem",
-                  }}>
-                  Koékip — Google Play Store
-                </p>
-              </div>
-              <ExternalLink size={12} style={{ color: "#0e7490" }} />
-            </motion.a>
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "14px",
+                    padding: "14px 16px",
+                    borderRadius: "14px",
+                    background: app.color,
+                    border: `1px solid ${app.border}`,
+                    textDecoration: "none",
+                    transition: "all 0.2s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
+                  <span style={{ fontSize: "1.4rem" }}>{app.emoji}</span>
+                  <div style={{ flex: 1 }}>
+                    <p
+                      style={{
+                        fontSize: "0.7rem",
+                        color: app.labelColor,
+                        marginBottom: "2px",
+                      }}>
+                      Application live
+                    </p>
+                    <p
+                      style={{
+                        color: app.textColor,
+                        fontWeight: 600,
+                        fontSize: "0.875rem",
+                      }}>
+                      {app.name} — Google Play Store
+                    </p>
+                  </div>
+                  <ExternalLink size={12} style={{ color: app.labelColor }} />
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
 
           {/* Right — Form */}

@@ -7,7 +7,7 @@ import { GraduationCap, Code2, Zap } from "lucide-react";
 const stats = [
   { value: "3+", label: "Années d'expérience" },
   { value: "10+", label: "Projets livrés" },
-  { value: "1", label: "App sur Play Store" },
+  { value: "2", label: "Apps sur Play Store" },
   { value: "M2", label: "Diplôme obtenu" },
 ];
 
