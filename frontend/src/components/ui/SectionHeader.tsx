@@ -23,6 +23,7 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <motion.div
+      className="section-header"
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
@@ -40,6 +41,7 @@ export default function SectionHeader({
           {label}
         </span>
         <h2
+          className="section-title"
           style={{
             ...fontHeading,
             fontSize: "clamp(2rem,4vw,3rem)",

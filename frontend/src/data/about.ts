@@ -1,5 +1,5 @@
 export const stats = [
-  { value: "3+", label: "Années d'expérience" },
+  { value: "2+", label: "Années d'expérience" },
   { value: "10+", label: "Projets livrés" },
   { value: "2", label: "Apps sur Play Store" },
   { value: "M2", label: "Diplôme obtenu" },

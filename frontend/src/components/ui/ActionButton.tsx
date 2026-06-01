@@ -37,6 +37,7 @@ export default function ActionButton({
 }: ActionButtonProps) {
   return (
     <a
+      className="action-button"
       href={href}
       target={target}
       rel={rel}

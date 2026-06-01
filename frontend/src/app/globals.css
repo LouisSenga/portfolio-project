@@ -39,6 +39,17 @@ body {
   overflow-x: hidden;
 }
 
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -117,6 +128,10 @@ body::before {
   padding-right: 1.5rem;
 }
 
+.site-section {
+  padding: 7rem 0;
+}
+
 .section-padding {
   padding-top: 7rem;
   padding-bottom: 7rem;
@@ -175,4 +190,80 @@ body::before {
     var(--accent-violet),
     var(--accent-cyan)
   );
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .site-section {
+    padding: 4.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 10vw, 2.35rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-intro {
+    text-align: center;
+  }
+
+  .hero-availability {
+    justify-content: center;
+  }
+
+  .hero-intro p,
+  .hero-intro .hero-actions {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .action-button {
+    justify-content: center;
+    min-height: 46px;
+  }
+
+  .card {
+    min-width: 0;
+  }
+
+  .contact-form-card {
+    padding: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-section {
+    padding: 4rem 0;
+  }
+
+  .hero-actions,
+  .action-button {
+    width: 100%;
+  }
+
+  .action-button {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .contact-form-card {
+    padding: 20px !important;
+  }
 }

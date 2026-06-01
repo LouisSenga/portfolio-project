@@ -19,11 +19,13 @@ export default function Section({
   innerRef,
   style,
 }: SectionProps) {
+  const sectionClassName = ["site-section", className].filter(Boolean).join(" ");
+
   return (
     <section
       id={id}
-      className={className}
-      style={{ position: "relative", padding: "7rem 0", ...style }}>
+      className={sectionClassName}
+      style={{ position: "relative", ...style }}>
       <div ref={innerRef} className={containerClassName} style={containerStyle}>
         {children}
       </div>

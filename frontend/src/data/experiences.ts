@@ -11,8 +11,20 @@ export const experiences = [
       "Développement mobile React Native : Rankocracy App (publiée sur Play Store) et Koékip App (publiée sur Play Store).",
       "Développement de Kasamai Talents : plateforme SaaS d'optimisation de profil professionnel par IA (NLP, analyse de CV, recommandations personnalisées).",
       "Intégration d'APIs IA : OpenAI et Gemini. Intégration Stripe pour les paiements.",
-      "Services Google : OAuth2, Calendar API, Gmail API via Google Cloud Console.",
+      "Services Google : OAuth2, Calendar API via Google Cloud Console.",
       "Conteneurisation Docker, Redis pour le traitement IA, gestion de versions GitLab/Git.",
+    ],
+  },
+  {
+    title: "Développeur Backend – Hackathon Aquisio",
+    company: "Accès Banque / EMIT",
+    location: "2e Place",
+    period: "24 – 27 Mars 2025",
+    current: false,
+    tasks: [
+      "APIs backend NestJS pour Aquisio, plateforme de gestion des achats en entreprise.",
+      "Emails transactionnels et notifications temps réel via WebSockets.",
+      "Authentification JWT et gestion des rôles.",
     ],
   },
   {
@@ -26,18 +38,6 @@ export const experiences = [
       "Modélisation des données et relations avec Eloquent ORM (Laravel).",
       "Contrôles d'accès par rôles et permissions.",
       "Optimisation des performances de 30% par refactorisation du code existant.",
-    ],
-  },
-  {
-    title: "Développeur Backend – Hackathon Aquisio",
-    company: "Accès Banque / EMIT",
-    location: "2e Place",
-    period: "24 – 27 Mars 2024",
-    current: false,
-    tasks: [
-      "APIs backend NestJS pour Aquisio, plateforme de gestion des achats en entreprise.",
-      "Emails transactionnels et notifications temps réel via WebSockets.",
-      "Authentification JWT et gestion des rôles.",
     ],
   },
   {

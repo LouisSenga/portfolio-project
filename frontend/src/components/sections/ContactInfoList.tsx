@@ -33,9 +33,10 @@ function LiveApps({ inView }: { inView: boolean }) {
             background: app.color,
             border: `1px solid ${app.border}`,
             textDecoration: "none",
+            minWidth: 0,
           }}>
           <span style={{ fontSize: "1.4rem" }}>{app.emoji}</span>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <p
               style={{
                 fontSize: "0.7rem",
@@ -49,6 +50,7 @@ function LiveApps({ inView }: { inView: boolean }) {
                 color: app.textColor,
                 fontWeight: 600,
                 fontSize: "0.875rem",
+                overflowWrap: "anywhere",
               }}>
               {app.name} — Google Play Store
             </p>
@@ -83,11 +85,12 @@ export default function ContactInfoList({ inView }: { inView: boolean }) {
             gap: "16px",
             padding: "16px",
             textDecoration: "none",
+            minWidth: 0,
           }}>
           <div className="contact-icon">
             <Icon color={color} />
           </div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <p
               style={{
                 fontSize: "0.7rem",
@@ -96,7 +99,13 @@ export default function ContactInfoList({ inView }: { inView: boolean }) {
               }}>
               {label}
             </p>
-            <p style={{ color: "#fff", fontWeight: 500, fontSize: "0.875rem" }}>
+            <p
+              style={{
+                color: "#fff",
+                fontWeight: 500,
+                fontSize: "0.875rem",
+                overflowWrap: "anywhere",
+              }}>
               {value}
             </p>
           </div>

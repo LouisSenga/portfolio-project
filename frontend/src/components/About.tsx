@@ -46,6 +46,7 @@ function HighlightList({ inView }: { inView: boolean }) {
 function StatsGrid({ inView }: { inView: boolean }) {
   return (
     <motion.div
+      className="about-stats-grid"
       initial={{ opacity: 0, x: 30 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.7, delay: 0.2 }}
@@ -170,7 +171,14 @@ export default function About() {
         </div>
       </div>
 
-      <style>{`@media(max-width:768px){.about-grid{grid-template-columns:1fr!important;}}`}</style>
+      <style>{`
+        @media(max-width:768px){
+          .about-grid{grid-template-columns:1fr!important;gap:2rem!important;}
+        }
+        @media(max-width:420px){
+          .about-stats-grid{grid-template-columns:1fr!important;}
+        }
+      `}</style>
     </Section>
   );
 }

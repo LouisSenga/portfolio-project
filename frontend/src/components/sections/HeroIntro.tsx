@@ -26,8 +26,9 @@ export default function HeroIntro() {
   const [firstName, lastName] = personalInfo.name.split(" ");
 
   return (
-    <div>
+    <div className="hero-intro">
       <motion.div
+        className="hero-availability"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -100,6 +101,7 @@ export default function HeroIntro() {
       </motion.div>
 
       <motion.div
+        className="hero-actions"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}

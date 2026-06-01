@@ -85,11 +85,13 @@ function TimelineItem({
 }) {
   return (
     <motion.div
+      className="timeline-item"
       initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       style={{ position: "relative", paddingLeft: "4rem" }}>
       <div
+        className="timeline-icon"
         style={{
           position: "absolute",
           left: 0,
@@ -148,6 +150,23 @@ export default function Experience() {
           ))}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .timeline-item {
+            padding-left: 2.25rem !important;
+          }
+
+          .timeline-icon {
+            width: 28px !important;
+            height: 28px !important;
+            top: 20px !important;
+          }
+
+          .timeline-line {
+            left: 14px !important;
+          }
+        }
+      `}</style>
     </Section>
   );
 }

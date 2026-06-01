@@ -35,9 +35,16 @@ export default function Navbar() {
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
     fn();
-    window.addEventListener("scroll", fn);
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   useEffect(() => {
     const sections = links
@@ -84,12 +91,16 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 50,
-          transition: "all 0.3s",
+          transition:
+            "background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease",
           background: scrolled ? "rgba(8,11,20,0.92)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(139,92,246,0.1)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: "1px solid",
+          borderColor: scrolled ? "rgba(139,92,246,0.1)" : "transparent",
         }}>
         <div
+          className="navbar-inner"
           style={{
             maxWidth: "72rem",
             margin: "0 auto",
@@ -115,8 +126,8 @@ export default function Navbar() {
 
           {/* Desktop */}
           <div
-            style={{ display: "flex", alignItems: "center", gap: "4px" }}
-            className="hidden md:flex">
+            className="desktop-nav"
+            style={{ alignItems: "center", gap: "4px" }}>
             {links.map((l) => (
               <a
                 key={l.href}
@@ -156,7 +167,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className="hidden md:flex"
+            className="desktop-contact"
             onClick={() => handleLinkClick("#contact")}
             style={{
               alignItems: "center",
@@ -179,12 +190,21 @@ export default function Navbar() {
 
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden"
+            className="mobile-menu-button"
+            type="button"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
             style={{
-              background: "none",
-              border: "none",
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: "10px",
               color: "#94a3b8",
               cursor: "pointer",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "42px",
+              height: "42px",
             }}>
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -194,29 +214,41 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
               position: "fixed",
               inset: 0,
-              zIndex: 40,
+              zIndex: 60,
               background: "rgba(8,11,20,0.98)",
               backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
               gap: "24px",
+              padding: "88px 24px 32px",
+              overflowY: "auto",
             }}>
             <button
               onClick={() => setOpen(false)}
+              type="button"
+              aria-label="Fermer le menu"
               style={{
                 position: "absolute",
                 top: "20px",
                 right: "24px",
-                background: "none",
-                border: "none",
+                width: "42px",
+                height: "42px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "10px",
                 color: "#94a3b8",
                 cursor: "pointer",
               }}>
@@ -231,6 +263,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06 }}
+                className="mobile-nav-link"
                 style={{
                   fontSize: "1.5rem",
                   fontFamily: "var(--font-syne,'Syne',sans-serif)",
@@ -248,6 +281,38 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <style>{`
+        .desktop-nav,
+        .desktop-contact {
+          display: flex;
+        }
+
+        .mobile-menu-button {
+          display: none;
+        }
+
+        @media (max-width: 767px) {
+          .navbar-inner {
+            height: 60px !important;
+            padding: 0 1rem !important;
+          }
+
+          .desktop-nav,
+          .desktop-contact {
+            display: none !important;
+          }
+
+          .mobile-menu-button {
+            display: flex !important;
+          }
+
+          .mobile-nav-link {
+            width: min(100%, 20rem);
+            padding: 12px 16px;
+            text-align: center;
+          }
+        }
+      `}</style>
     </>
   );
 }
