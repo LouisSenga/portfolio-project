@@ -3,7 +3,15 @@ export const projects = [
     title: "Kasamai Talents",
     description:
       "Plateforme SaaS d'optimisation de profil professionnel par IA. Analyse automatique de CV (NLP), extraction de compétences, recommandations personnalisées et préparation aux entretiens. Module gratuit d'analyse + modules payants (achat unique via Stripe).",
-    tags: ["NestJS", "Next.js", "PostgreSQL", "Redis", "OpenAI", "Stripe", "SaaS"],
+    tags: [
+      "NestJS",
+      "Next.js",
+      "PostgreSQL",
+      "Redis",
+      "OpenAI",
+      "Stripe",
+      "SaaS",
+    ],
     link: "",
     github: "",
     highlight: true,
@@ -21,7 +29,8 @@ export const projects = [
     highlight: true,
     badge: "🗳️ Live sur Play Store",
     color: "blue-violet",
-    playstore: "https://play.google.com/store/apps/details?id=com.rankocracy.app",
+    playstore:
+      "https://play.google.com/store/apps/details?id=com.rankocracy.app",
   },
   {
     title: "Koékip App",
@@ -39,7 +48,7 @@ export const projects = [
     title: "Aquisio – Hackathon",
     description:
       "Plateforme de gestion des achats en entreprise développée en 72h lors d'un hackathon Accès Banque. 2e place. APIs NestJS, emails transactionnels, notifications temps réel WebSockets.",
-    tags: ["NestJS", "WebSockets", "JWT", "Email", "Hackathon"],
+    tags: ["NestJS", "React", "WebSockets", "JWT", "Email", "Hackathon"],
     link: "",
     github: "",
     highlight: false,
