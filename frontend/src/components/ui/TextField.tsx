@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, CSSProperties } from "react";
+import type { ChangeEventHandler, CSSProperties, HTMLInputTypeAttribute } from "react";
 
 type TextFieldProps = {
   label: string;
@@ -6,7 +6,11 @@ type TextFieldProps = {
   value: string;
   placeholder: string;
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  type?: HTMLInputTypeAttribute;
   rows?: number;
+  required?: boolean;
+  maxLength?: number;
+  disabled?: boolean;
 };
 
 const inputStyle: CSSProperties = {
@@ -29,7 +33,11 @@ export default function TextField({
   value,
   placeholder,
   onChange,
+  type = "text",
   rows,
+  required,
+  maxLength,
+  disabled,
 }: TextFieldProps) {
   const Field = rows ? "textarea" : "input";
 
@@ -47,11 +55,15 @@ export default function TextField({
       </label>
       <Field
         name={name}
+        type={rows ? undefined : type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         rows={rows}
-        style={{ ...inputStyle, resize: rows ? "none" : undefined }}
+        required={required}
+        maxLength={maxLength}
+        disabled={disabled}
+        style={{ ...inputStyle, resize: rows ? "none" : undefined, opacity: disabled ? 0.65 : 1 }}
         onFocus={(event) => {
           event.currentTarget.style.borderColor = "rgba(139,92,246,0.5)";
         }}
