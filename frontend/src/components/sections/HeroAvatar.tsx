@@ -1,54 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { heroBadges } from "../../data/hero-data";
 
 function Avatar() {
   return (
-    <svg
-      viewBox="0 0 200 200"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ width: "100%", height: "100%" }}>
-      <defs>
-        <linearGradient id="ag" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#8b5cf6" />
-          <stop offset="50%" stopColor="#3b82f6" />
-          <stop offset="100%" stopColor="#06b6d4" />
-        </linearGradient>
-        <clipPath id="ac">
-          <circle cx="100" cy="100" r="90" />
-        </clipPath>
-      </defs>
-      <circle cx="100" cy="100" r="90" fill="url(#ag)" opacity="0.2" />
-      <circle
-        cx="100"
-        cy="100"
-        r="90"
-        fill="none"
-        stroke="url(#ag)"
-        strokeWidth="2"
-      />
-      <ellipse
-        cx="100"
-        cy="160"
-        rx="45"
-        ry="35"
-        fill="url(#ag)"
-        opacity="0.6"
-        clipPath="url(#ac)"
-      />
-      <circle cx="100" cy="82" r="32" fill="url(#ag)" opacity="0.8" />
-      <text
-        x="100"
-        y="90"
-        textAnchor="middle"
-        fontSize="20"
-        fill="white"
-        fontFamily="monospace"
-        fontWeight="bold">
-        &lt;/&gt;
-      </text>
-    </svg>
+    <Image
+      src="/images/avatar.jpeg"
+      alt="Avatar"
+      fill
+      priority
+      sizes="256px"
+      style={{
+        objectFit: "cover",
+        objectPosition: "center calc(50% + 25px)",
+      }}
+    />
   );
 }
 

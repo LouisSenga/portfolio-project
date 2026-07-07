@@ -7,17 +7,31 @@ export const skills = [
   {
     category: "Frontend & Mobile",
     icon: "🎨",
-    items: ["React", "Next.js", "Vue.js", "React Native", "Vite.js", "Tailwind CSS"],
+    items: [
+      "React",
+      "Next.js",
+      "Vue.js",
+      "React Native",
+      "Vite.js",
+      "Tailwind CSS",
+    ],
   },
   {
     category: "Base de données",
     icon: "🗄️",
-    items: ["MySQL", "PostgreSQL", "Redis", "Eloquent ORM", "Modélisation MERISE", "UML"],
+    items: ["MySQL", "PostgreSQL", "Supabase", "Redis", "Eloquent ORM"],
   },
   {
     category: "Cloud & IA",
     icon: "🤖",
-    items: ["OpenAI API", "Gemini API", "Google OAuth2", "Gmail API", "Google Calendar API", "NLP"],
+    items: [
+      "OpenAI API",
+      "Gemini API",
+      "Google OAuth2",
+      "Gmail API",
+      "Google Calendar API",
+      "NLP",
+    ],
   },
   {
     category: "DevOps & Outils",
