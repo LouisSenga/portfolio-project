@@ -5,7 +5,7 @@ export const personalInfo = {
     "Je construis des APIs robustes, des apps mobiles et des interfaces modernes.",
   email: "sengafenoanjara@gmail.com",
   phone: "+261 34 85 96 777",
-  location: "Fianarantsoa, Madagascar",
+  location: "Antananarivo, Madagascar",
   github: "https://github.com/LouisSenga",
   linkedin: "",
   playstore: "https://play.google.com/store/apps/details?id=com.koekip.app",
